@@ -1,0 +1,19 @@
+#!/bin/sh -e
+
+cd wiringPi
+make clean
+make -j4
+make install
+cd ..
+
+cd devLib
+make clean
+make -j4
+make install
+cd ..
+
+cd gpio
+make clean
+make -j4
+make install
+cd ..
