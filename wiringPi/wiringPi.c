@@ -751,6 +751,8 @@ int piGpioLayout (void)
   char *c ;
   static int  gpioLayout = -1 ;
 
+  return 2;
+
   if (gpioLayout != -1)	// No point checking twice
     return gpioLayout ;
 
@@ -963,6 +965,9 @@ void piBoardId (int *model, int *rev, int *mem, int *maker, int *warranty)
 
 //	Will deal with the properly later on - for now, lets just get it going...
 //  unsigned int modelNum ;
+
+  *model = PI_MODEL_4B ; *rev = PI_VERSION_1_2 ; *mem = 2 ; *maker = PI_MAKER_EGOMAN;
+  return
 
   (void)piGpioLayout () ;	// Call this first to make sure all's OK. Don't care about the result.
 
@@ -2330,7 +2335,6 @@ int wiringPiSetup (void)
   {
     if ((fd = open ("/dev/gpiomem", O_RDWR | O_SYNC | O_CLOEXEC) ) >= 0)	// We're using gpiomem
     {
-      piGpioBase   = 0 ;
       usingGpioMem = TRUE ;
     }
     else
